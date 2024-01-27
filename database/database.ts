@@ -1,9 +1,9 @@
 require('dotenv').config()
 //require mongoose module
-import mongoose from "mongoose"
+import mongoose, { isValidObjectId } from 'mongoose'
 
 //require chalk module to give colors to console text
-import chalk from "chalk"
+import chalk from 'chalk'
 
 //require database URL from properties file
 const dbURL = `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@ecommerce.f2agf.mongodb.net/main?retryWrites=true&w=majority`
@@ -18,28 +18,30 @@ export const connectMongoDB = () => {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
 
-  mongoose.connection.on("connected", function () {
-    console.log(connected("Mongoose default connection is open to MongoDB Atlas"))
-  })
-
-  mongoose.connection.on("error", function (err) {
+  mongoose.connection.on('connected', function () {
     console.log(
-      error("Mongoose default connection has occured " + err + " error")
+      connected('Mongoose default connection is open to MongoDB Atlas')
     )
   })
 
-  mongoose.connection.on("disconnected", function () {
-    console.log(disconnected("Mongoose default connection is disconnected"))
+  mongoose.connection.on('error', function (err) {
+    console.log(
+      error('Mongoose default connection has occured ' + err + ' error')
+    )
   })
 
-  process.on("SIGINT", function () {
+  mongoose.connection.on('disconnected', function () {
+    console.log(disconnected('Mongoose default connection is disconnected'))
+  })
+
+  process.on('SIGINT', function () {
     mongoose.connection.close(function () {
       console.log(
         termination(
-          "Mongoose default connection is disconnected due to application termination"
+          'Mongoose default connection is disconnected due to application termination'
         )
       )
       process.exit(0)
@@ -47,6 +49,6 @@ export const connectMongoDB = () => {
   })
 }
 
-export const isValidId = (id: string) => {
-  return mongoose.Types.ObjectId.isValid(id)
+export const isValidId = (id: string): boolean => {
+  return isValidObjectId(id)
 }
