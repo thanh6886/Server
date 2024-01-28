@@ -6,8 +6,9 @@ import mongoose, { isValidObjectId } from 'mongoose'
 import chalk from 'chalk'
 
 //require database URL from properties file
-const dbURL = `mongodb+srv://${process.env.USERNAME_DB}:${process.env.PASSWORD_DB}@ecommerce.f2agf.mongodb.net/main?retryWrites=true&w=majority`
 
+const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/?retryWrites=true&w=majority`
+// const dbURL = 'mongodb://localhost:27017/admin'
 const connected = chalk.bold.cyan
 const error = chalk.bold.yellow
 const disconnected = chalk.bold.red
@@ -22,7 +23,7 @@ export const connectMongoDB = () => {
     useFindAndModify: false,
   })
 
-  mongoose.connection.on('connected', function () {
+  mongoose.connection.on('open', function () {
     console.log(
       connected('Mongoose default connection is open to MongoDB Atlas')
     )
