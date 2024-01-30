@@ -4,11 +4,13 @@ import mongoose, { isValidObjectId } from 'mongoose'
 
 //require chalk module to give colors to console text
 import chalk from 'chalk'
+import { MongoClientOptions, MongoClient } from 'mongodb'
 
 //require database URL from properties file
 
-const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/?retryWrites=true&w=majority`
-// const dbURL = 'mongodb://localhost:27017/admin'
+// const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/?retryWrites=true&w=majority`
+
+const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/demo`
 const connected = chalk.bold.cyan
 const error = chalk.bold.yellow
 const disconnected = chalk.bold.red

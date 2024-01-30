@@ -41,6 +41,6 @@ app.use(function (err: any, req: any, res: any, next: any) {
   responseError(res, err)
 })
 const port = process.env.PORT
-app.listen(port, function () {
-  console.log('App listening at: http://localhost:' + port)
+app.listen(process.env.PORT, function () {
+  console.log(chalk.greenBright(`API listening on port ${process.env.PORT}!`))
 })

@@ -172,7 +172,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     .lean()
   products = products.map((product) => handleImageProduct(product))
   const response = {
-    message: 'Lấy tất cả sản phẩm thành công',
+    message: 'Lấy tất cả sản phẩm thành công...',
     data: products,
   }
   return responseSuccess(res, response)
