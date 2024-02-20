@@ -40,7 +40,7 @@ routes.forEach((item) =>
 app.use(function (err: any, req: any, res: any, next: any) {
   responseError(res, err)
 })
-const port = process.env.PORT
+
 app.listen(process.env.PORT, function () {
   console.log(chalk.greenBright(`API listening on port ${process.env.PORT}!`))
 })
