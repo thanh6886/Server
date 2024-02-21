@@ -8,8 +8,4 @@ export const isEmail = (email: string) => {
   return REGEX_EMAIL.test(email)
 }
 
-export const isAdmin = (req: Request) => {
-  return req.jwtDecoded?.roles?.includes(ROLE.ADMIN)
-}
-
 export const isMongoId = (id) => isValidObjectId(id)

@@ -3,7 +3,7 @@ import { responseSuccess, ErrorHandler } from '../utils/response'
 import { ProductModel } from '../database/models/product.model'
 import { STATUS } from '../constants/status'
 import mongoose from 'mongoose'
-import { isAdmin } from '../utils/validate'
+
 import { uploadFile, uploadManyFile } from '../utils/upload'
 import { HOST } from '../utils/helper'
 import { FOLDERS, FOLDER_UPLOAD, ROUTE_IMAGE } from '../constants/config'
@@ -289,10 +289,7 @@ const deleteManyProducts = async (req: Request, res: Response) => {
 const searchProduct = async (req: Request, res: Response) => {
   let { searchText }: { [key: string]: string | any } = req.query
   searchText = decodeURI(searchText)
-  let condition = { $text: { $search: `\"${searchText}\"` } }
-  if (!isAdmin(req)) {
-    condition = Object.assign(condition, { visible: true })
-  }
+  let condition = { $text: { $search: `\"${searchText}\"` }, visible: true }
   let products: any = await ProductModel.find(condition)
     .populate('category')
     .sort({ createdAt: -1 })

@@ -1,13 +1,11 @@
 import { config } from '../constants/config'
 import { verifyToken } from '../utils/jwt'
 import { NextFunction, Request, Response } from 'express'
-import { ROLE } from '../constants/role.enum'
 import { responseError, ErrorHandler } from '../utils/response'
 import { STATUS } from '../constants/status'
 import { AccessTokenModel } from '../database/models/access-token.model'
 import { RefreshTokenModel } from '../database/models/refresh-token.model'
 import { body } from 'express-validator'
-import { UserModel } from '../database/models/user.model'
 
 const verifyAccessToken = async (
   req: Request,
@@ -77,17 +75,6 @@ const verifyRefreshToken = async (
   )
 }
 
-const verifyAdmin = async (req: Request, res: Response, next: NextFunction) => {
-  const userDB: User = await UserModel.findById(req.jwtDecoded.id).lean()
-  if (userDB.roles.includes(ROLE.ADMIN)) {
-    return next()
-  }
-  return responseError(
-    res,
-    new ErrorHandler(STATUS.FORBIDDEN, 'Không có quyền truy cập')
-  )
-}
-
 const registerRules = () => {
   return [
     body('email')
@@ -118,7 +105,6 @@ const loginRules = () => {
 
 const authMiddleware = {
   verifyAccessToken,
-  verifyAdmin,
   registerRules,
   loginRules,
   verifyRefreshToken,

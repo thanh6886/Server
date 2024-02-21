@@ -3,7 +3,6 @@ import cors from 'cors'
 import chalk from 'chalk'
 import helmet from 'helmet'
 import { connectMongoDB } from './database/database'
-import adminRoutes from './routes/admin/index.route'
 import commonRoutes from './routes/common/index.route'
 import userRoutes from './routes/user/index.route'
 import { responseError } from './utils/response'
@@ -14,7 +13,7 @@ require('dotenv').config()
 
 const app: express.Application = express()
 connectMongoDB()
-const routes = [{ ...commonRoutes }, { ...userRoutes }, { ...adminRoutes }]
+const routes = [{ ...commonRoutes }, { ...userRoutes }]
 app.use(helmet())
 app.use(cors())
 app.use(express.json())
