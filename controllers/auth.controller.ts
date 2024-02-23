@@ -63,7 +63,7 @@ const registerController = async (req: Request, res: Response) => {
       token: refresh_token,
     }).save()
     const response = {
-      message: 'Đăng ký thành công',
+      message: 'Đăng ký tài khoản thành công',
       data: {
         access_token: 'Bearer ' + access_token,
         expires: config.EXPIRE_ACCESS_TOKEN,
@@ -122,7 +122,7 @@ const loginController = async (req: Request, res: Response) => {
       token: refresh_token,
     }).save()
     const response = {
-      message: 'Đăng nhập thành công',
+      message: 'Đăng nhập tài khoản thành công',
       data: {
         access_token: 'Bearer ' + access_token,
         expires: expireAccessTokenConfig,
