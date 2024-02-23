@@ -8,8 +8,6 @@ import { MongoClientOptions, MongoClient } from 'mongodb'
 
 //require database URL from properties file
 
-// const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/?retryWrites=true&w=majority`
-
 const dbURL = `mongodb+srv://admin:admin@cluster0.feonno5.mongodb.net/demo`
 const connected = chalk.bold.cyan
 const error = chalk.bold.yellow
