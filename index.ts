@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 
 const dirNameWithEnv = isProduction ? path.dirname(__dirname) : __dirname
 
-export const handlerImage: any = Object.values(FOLDERS).reduce(
+const handlerImage: any = Object.values(FOLDERS).reduce(
   (result: any, current: any) => {
     return [
       ...result,
@@ -30,6 +30,7 @@ export const handlerImage: any = Object.values(FOLDERS).reduce(
   },
   [express.static(path.join(dirNameWithEnv, `/${FOLDER_UPLOAD}`))]
 )
+// console.log(handlerImage)
 
 app.use(`/${ROUTE_IMAGE}`, ...handlerImage)
 
