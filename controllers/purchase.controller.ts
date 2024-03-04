@@ -247,3 +247,12 @@ export const deletePurchases = async (req: Request, res: Response) => {
     data: { deleted_count: deletedData.deletedCount },
   })
 }
+
+const ProductController = {
+  addToCart,
+  updatePurchase,
+  buyProducts,
+  getPurchases,
+  deletePurchases,
+}
+export default ProductController
