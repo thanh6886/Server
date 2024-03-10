@@ -4,7 +4,6 @@ import { ProductModel } from '../database/models/product.model'
 import { STATUS } from '../constants/status'
 import mongoose from 'mongoose'
 
-import { uploadFile, uploadManyFile } from '../utils/upload'
 import { HOST } from '../utils/helper'
 import { FOLDERS, FOLDER_UPLOAD, ROUTE_IMAGE } from '../constants/config'
 
@@ -143,7 +142,6 @@ const searchProduct = async (req: Request, res: Response) => {
 const ProductController = {
   getProducts,
   getProduct,
-
   searchProduct,
 }
 
