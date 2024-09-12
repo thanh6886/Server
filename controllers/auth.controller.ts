@@ -39,7 +39,7 @@ const registerController = async (req: Request, res: Response) => {
     const userAdd = await (await new UserModel(user).save()).toObject()
     const payloadJWT: PayloadToken = {
       email,
-      id: userAdd._id,
+      id: userAdd._id.toString(),
       roles: [ROLE.USER],
       created_at: new Date().toISOString(),
     }

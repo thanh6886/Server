@@ -78,7 +78,7 @@ const getProducts = async (req: Request, res: Response) => {
         .populate({
           path: 'category',
         })
-        .sort({ [sort_by]: order === 'desc' ? -1 : 1 })
+        .sort({ [sort_by]: order === 'desc' ? -1 : 1 } as any)
         .skip(page * limit - limit)
         .limit(limit)
         .select({ __v: 0, description: 0 })

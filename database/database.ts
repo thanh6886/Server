@@ -16,12 +16,7 @@ const termination = chalk.bold.magenta
 
 //export this function and imported by server.js
 export const connectMongoDB = () => {
-  mongoose.connect(dbURL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
+  mongoose.connect(dbURL)
 
   mongoose.connection.on('open', function () {
     console.log(
@@ -38,16 +33,16 @@ export const connectMongoDB = () => {
   mongoose.connection.on('disconnected', function () {
     console.log(disconnected('Mongoose default connection is disconnected'))
   })
-
-  process.on('SIGINT', function () {
-    mongoose.connection.close(function () {
+  process.on('SIGINT', async () => {
+    try {
+      await mongoose.connection.close()
       console.log(
         termination(
           'Mongoose default connection is disconnected due to application termination'
         )
       )
       process.exit(0)
-    })
+    } catch (error) {}
   })
 }
 
